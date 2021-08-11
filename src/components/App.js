@@ -2,8 +2,10 @@ import React, { useReducer, useEffect } from 'react';
 import reducer from '../reducers';
 import EventForm from './EventForm';
 import Events from './Events.js';
-
+import AppContext from '../contexts/AppContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+console.log({ AppContext });
 
 const App = () => {
   const initialEvents = [];
@@ -14,10 +16,12 @@ const App = () => {
   }, [state]);
 
   return (
-    <div className="container-fluid">
-      <EventForm state={state} dispatch={dispatch} />
-      <Events state={state} dispatch={dispatch} />
-    </div>
+    <AppContext.Provider value={{ state, dispatch }}>
+      <div className="container-fluid">
+        <EventForm />
+        <Events />
+      </div>
+    </AppContext.Provider>
   );
 };
 
