@@ -5,11 +5,11 @@ import Events from './Events.js';
 import AppContext from '../contexts/AppContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-console.log({ AppContext });
-
 const App = () => {
-  const initialEvents = [];
-  const [state, dispatch] = useReducer(reducer, initialEvents);
+  const initialState = {
+    events: [],
+  };
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     console.log({ state });
